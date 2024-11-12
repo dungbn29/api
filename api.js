@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const PORT = 3000;
 
@@ -60,9 +61,12 @@ const projects = [
     },
 ];
 
+// Sử dụng CORS để cho phép truy cập từ các nguồn khác
+app.use(cors());
+
 // Endpoint GET /projects để trả về danh sách các dự án
 app.get('/projects', (req, res) => {
-    res.json(projects);
+    res.json({ projects: projects });  // Trả về danh sách dự án thực tế
 });
 
 // Khởi động server
